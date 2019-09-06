@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{BandT}
+J.~{Binney} and S.~{Tremaine}.
+\newblock {\em {Galactic Dynamics: Second Edition}}.
+\newblock Princeton University Press, 2008.
+
+\bibitem{Dodelson}
+{Dodelson, Scott}.
+\newblock {\em {Modern cosmology}}.
+\newblock {Academic Press}, {San Diego, CA}, {2003}.
+
+\bibitem{MoND}
+M.~{Milgrom}.
+\newblock {A modification of the Newtonian dynamics as a possible alternative
+  to the hidden mass hypothesis}.
+\newblock {\em \textit{APJ}}, 270:365--370, July 1983.
+
+\bibitem{VeeraRubin}
+V.~C. {Rubin} and W.~K. {Ford}, Jr.
+\newblock {Rotation of the Andromeda Nebula from a Spectroscopic Survey of
+  Emission Regions}.
+\newblock {\em \textit{APJ}}, 159:379, February 1970.
+
+\bibitem{Zwicky}
+F.~{Zwicky}.
+\newblock {Die Rotverschiebung von extragalaktischen Nebeln}.
+\newblock {\em Helvetica Physica Acta}, 6:110--127, 1933.
+
+\end{thebibliography}
