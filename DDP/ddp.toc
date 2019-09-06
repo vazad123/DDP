@@ -1,0 +1,20 @@
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Things to do}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}21.8.2019}{3}{subsection.1.1.1}
+\contentsline {section}{\numberline {1.2}intro}{3}{section.1.2}
+\contentsline {chapter}{\numberline {2}GEANT 4}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Light collection efficiency simulations for DARWIN Prototype}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Creating the geometry}{5}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Adding sensitive detector}{5}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Physics Lists}{5}{subsection.2.1.3}
+\contentsline {chapter}{\numberline {3}Dark Matter Theory}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Statistical mechanics of dark matter}{7}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}The Boltzmann equation and Jeans Theorem}{7}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Collisionless Boltzmann equation for photons}{8}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Boltzmann equation for Cold Dark matter}{10}{subsection.3.1.3}
+\contentsline {chapter}{\numberline {4}Questions}{13}{chapter.4}
+\contentsline {chapter}{\numberline {5}Experiment}{15}{chapter.5}
+\contentsline {section}{\numberline {5.1}DARWIN experment}{15}{section.5.1}
+\contentsline {section}{\numberline {5.2}Xurich experiment}{15}{section.5.2}
+\contentsline {chapter}{\numberline {6}Simulations}{17}{chapter.6}
+\contentsline {chapter}{\numberline {7}Inferences}{19}{chapter.7}

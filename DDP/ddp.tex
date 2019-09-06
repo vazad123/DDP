@@ -1,0 +1,357 @@
+\documentclass[10pt,a4paper]{book}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage[width=18.00cm, height=26.00cm]{geometry}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true, %set true if you want colored links
+	linktoc=all,     %set to all if you want both sections and subsections linked
+	linkcolor=blue,  %choose some color if you want links to stand out
+}
+\author{Rachana Yajur}
+\title{Simulations for DARWIN Demonstrator - Dual Degree Project}
+\begin{document}
+%	\maketitle
+	\tableofcontents
+	\begin{chapter}{Introduction}
+		references are : 
+		\section{Things to do}
+		\begin{itemize}
+			\item make list of references
+			\item Work on github website and keep codes organized
+            \item fill this space everyday. 
+		\end{itemize}
+	\subsection{21.8.2019}
+		Started GEANT4 geometry programs. building cylinders, rings and caps. 
+	
+	
+\section{intro}
+	Signatures of dark matter was first observed by Zwicky\cite{Zwicky} in 1930 pertaining to the unexpected motion of galaxies in galaxy clusters. Further evidences from galactic rotation curves first observed by Veera Rubin \cite{VeeraRubin}.,  which seemed to evidently veer off from explanations provided by Newtonian dynamics, pleaded for a new theory of dark matter to be established. In this regard very many new theories were proposed suggesting that it could consist of beyond the standard model particles or even be the result of modification to Newtonian Dynamics\cite{MoND}. Upon further observations and development of theories, experiments to detect the particle nature of dark matter were being carried out. In this project we would look into the particle physics properties of dark matter in the light of direct and indirect detection methods and try to find the differences in constraints that can be established with these two methods. 
+	
+	\end{chapter}
+
+\chapter{GEANT 4}
+
+\section{Light collection efficiency simulations for DARWIN Prototype}
+
+
+\subsection{Creating the geometry}
+\subsection{Adding sensitive detector}
+\subsection{Physics Lists}
+
+
+
+	\begin{chapter}{Dark Matter Theory}
+			\section{Statistical mechanics of dark matter}
+		
+		We shall proceed by making a series of assumptions and utilize known physics to build them up and develop a model to search for dark matter. 
+		
+		\textbf{Assumption 1}: Dark matter consists of particles(beyond the standard model), which at some rate interacts with standard model particles as well as among themselves. Let the dark matter particles be denoted by $\chi$ and standard model particles by $S$.
+		
+		The reason we are considering the interactions with standard model particles is because that is the only channel through which we could detect any signatures of dark matter and their properties through experiments. 
+		
+		\textbf{Assumption 2}: Follwing assumption 1, during some epoch in the universe, $\chi$ was in equilibrium with $S$. And hence the following equilibrium reactions took place among them: 
+		
+		
+		\begin{align}
+		\chi + \chi &\rightleftharpoons S + S \\
+		\chi + S & \rightleftharpoons \chi + S    
+		\end{align}
+		
+		These are the only possibilities as $\chi + \chi \rightleftharpoons \chi + \chi$ cannot be seen or wouldn't technically change anything and $S + S \rightleftharpoons S +S $ give us no informaiton about dark matter. 
+		
+		When the above mentioned reactions are in equilibrium, dark matter particles are constantly being replenished. But, when the rate of the reaction equals the Hubble rate H, then it would be highly improbable for a dark matter particle to find a partner to scatter with and thus its number density remains frozen in time. This time in the cosmological timeline of the universe is called 'freeze-out'. 
+		\\
+		
+		Following the above assumptions, we now look into modelling the evolution of the phase space number density of dark matter particles by taking into account the following concepts:\\
+		1. Expansion of the universe\\
+		2. Cosmological perturbations to the metric of the universe.\\
+		3. Particle scattering cross sections for dark matter with fermionic/bosonic characteristics.
+		
+		It is time to build up on these two assumptions and see what happens. 
+		
+		\subsection{The Boltzmann equation and Jeans Theorem}
+		
+		
+		The phase space density of DM particles in the halo of a galaxy is given by $f(x,v)$. Where $f$ is basically the probability per unit volume of finding the DM particle in a given volume in the phase-space. Conservation of probability gives: 
+		\begin{equation}
+		\int f(x,v)d^3x d^3y = 1
+		\end{equation}
+		Evolution of $f$ with the constrait of conserving probability is the same as modelling a fluid flow whose mass is conserved(in non-relativistic limit). The conservation of fluid flow is described by the continuity equation\cite{BandT}
+		\begin{equation}
+		\dfrac{\partial \rho}{\partial t} + \dfrac{\partial}{\partial \mathbf{x}}\cdot \dot{\mathbf{x}}\rho = 0
+		\end{equation}
+		Where $\rho$ is the density and $\dot{x}$ is the velocity of the field. The anologous equation for phase-space density for collisionless dark matter is given by:
+		\begin{equation}
+		\dfrac{\partial f}{\partial t} + \dfrac{\partial}{\partial \mathbf{w}}\cdot f\mathbf{\dot{w}} = 0 
+		\end{equation}
+		Where $\mathbf{w} = (\mathbf{x},\mathbf{v})$
+		Note that $\mathbf{w}$ also satisfies Hamilton's equations given by:
+		\begin{equation}
+		\dfrac{\partial H}{\partial \mathbf{v} } = \mathbf{\dot{x}}; \qquad	 \dfrac{\partial H}{\partial \mathbf{x} } = -\mathbf{\dot{v}} 
+		\end{equation} 
+		This reduces the previous equation to:
+		\begin{align}
+		\dfrac{\partial}{\partial \mathbf{x}}\cdot f\mathbf{\dot{x}} + \dfrac{\partial}{\partial \mathbf{v}}\cdot f\mathbf{\dot{v}} &=  \dfrac{\partial}{\partial \mathbf{x}}\cdot f\dfrac{\partial H}{\partial \mathbf{v} } - \dfrac{\partial}{\partial \mathbf{v}}\cdot f\dfrac{\partial H}{\partial \mathbf{x} } \\
+		& = \dfrac{\partial f}{\partial \mathbf{x}}\cdot \dfrac{\partial H}{\partial \mathbf{v} } - \dfrac{\partial f}{\partial \mathbf{v}}\cdot \dfrac{\partial H}{\partial \mathbf{x} } \\
+		&= \dfrac{\partial f}{\partial \mathbf{x}}\cdot \mathbf{\dot{x}} + \dfrac{\partial f}{\partial \mathbf{v}}\cdot \mathbf{\dot{v}} 
+		\end{align}
+		
+		From this the collisionless Boltzmann equation is given by: 
+		\begin{equation}
+		\dfrac{\partial f}{\partial t} + \dfrac{\partial f}{\partial \mathbf{x}}\cdot \mathbf{\dot{x}} + \dfrac{\partial f}{\partial \mathbf{v}}\cdot \mathbf{\dot{v}}  = 0 
+		\end{equation}
+		Define a Liouville operator in non-relativistic limit such that:
+		\begin{equation}
+		\mathbf{L}_{nr}[f]  =  \dfrac{\partial f}{\partial t} + \dfrac{\partial f}{\partial \mathbf{x}}\cdot \mathbf{\dot{x}} + \dfrac{\partial f}{\partial \mathbf{v}}\cdot \mathbf{\dot{v}}  
+		\end{equation}	 
+		In modelling the phase-space density of dark matter in Milky Way, we first consider a simplistic non-relativistic collisionless Boltzmann equation given by:	 
+		
+		\begin{equation}
+		\mathbf{L}[f] = 0
+		\end{equation}
+		
+		Now in order to find solutions to this Boltzmann equation we make use of the Jean's theorem which states that the solutions can only be a function of the phase-space coordinates though the \textbf{Integrals of motion} $I(\mathbf{x},\mathbf{v})$, which satisfy:
+		\begin{equation}
+		\dfrac{\partial I(\mathbf{x},\mathbf{v})}{\partial t} =0 
+		\end{equation} 
+		In this case, the Hamiltionian of the system is an Integral of motion. Incorporating Jean's theorem we get:
+		\begin{equation}
+		f(\textbf{w}) = f(\mathcal{E}) \,\: \text{where}\: \, \mathcal{E} = \Psi - \dfrac{1}{2}v^2
+		\end{equation}
+		
+		$\Psi$ being the gravitational potential.	 
+		\subsection{Collisionless Boltzmann equation for photons}
+		
+		In order to model the dark matter particle properties, it is essential to understand basics of cosmology and derive the Boltzmann equation for cold dark matter accordingly (non-relativistic) in an expanding universe\cite{Dodelson}. In order to understand this, we begin by attempting to model the Boltzmann equation for photons and extrapolate the similar procedure towards modelling cold dark matter. 
+		
+		Assuming flat universe, the Friedman-Robertson-Walker metric for the universe is given by:
+		
+		\begin{equation}\label{FRW}
+		g_{\mu \nu} = \begin{bmatrix}
+		-1&0&0&0\\
+		0& a^2(t) & 0 & 0\\
+		0 & 0 & a^2(t) & 0\\
+		0 & 0 & 0 & a^2 (t) \\ 
+		\end{bmatrix}
+		\end{equation}
+		
+		This metric accounts for the expansion of the universe with the Hubble rate given by $ H = \dfrac{\dot{a}}{a} $. In order to model the anisotropies in the early universe, the Boltzmann equation would have to include all kinds of collision terms( photon - matter, matter- DM, matter - matter etc., ). In order to systematically go about with this, we consider writing down a Boltzmann equation for each species. The unintegrated Boltzmann equation is :
+		
+		\begin{equation}\label{key}
+		\dfrac{df}{dt } = C[f]
+		\end{equation}	 
+		
+		Where $ C[f] $ consists of all possible collision terms. 
+		
+		Firstly, we shall consider the collisionless Boltzmann equation for photons.    We consider a perturbed metric instead of \ref{FRW}. Which is given as follows: 
+		
+		\begin{align}
+		g_{00}(\vec{x},t) &  = -1 -2 \Psi(\vec{x},t)\\
+		g_{0i}(\vec{x},t) &  = 0\\
+		g_{ij}(\vec{x},t) &  = a^2 \delta_{ij}(1+2\Phi(\vec{x},t))
+		\end{align}
+		
+		The perturbations to the metric, $ \Psi $ corresponds to the Newtonian potential, while $ \Phi $ corresponds to perturbations to the spatial curvature. In the future calculations we will treat  $ \Psi $and   $ \Phi $ as small and ignore the quadratic contributions. 
+		
+		The distribution function $ f $ depends on the phase space coordiantes $ (x^\mu , P^\mu) $ where $ P^\mu $ is defined to be 
+		
+		\begin{equation}\label{key}
+		P^\mu \equiv  \dfrac{dx^\mu}{d\lambda}
+		\end{equation}
+		
+		where $ \lambda $ parametrizes the particle's path. 
+		The masslessness of the photon imposes the condition that 
+		
+		\begin{equation}\label{photon-mom}
+		P^2 \equiv g_{\mu \nu} P^\mu P^\nu = 0
+		\end{equation}
+		
+		Using the perturbed metric we defined above, Eqn\eqref{photon-mom} will be: 
+		
+		\begin{equation}\label{p^2}
+		P^2 = 0 = -(1+2\Psi)(P^0)^2+ p^2 
+		\end{equation}
+		where $ p^2  \equiv g_{ij}P^iP^j$ 
+		Simplifying Eqn \eqref{p^2} and keeping in mind that we are performing first order perturbative expansion we get,
+		
+		\begin{equation}\label{key}
+		P^0 = \dfrac{p}{\sqrt{1+2\Psi}} = p(1-\Psi)
+		\end{equation}
+		
+		Now rewriting the left hand side of the Boltzmann equation in terms of partial derivatives, we get:
+		
+		\begin{equation}\label{LHS BE}
+		\dfrac{df}{dt} = \dfrac{\partial f }{\partial t} +\dfrac{\partial f }{\partial x^i}\dfrac{dx^i}{dt}+\dfrac{\partial f }{\partial p}\dfrac{dp}{dt}+\dfrac{\partial f }{\partial \hat{p}^i}\dfrac{d\hat{p}^i}{dt}  
+		\end{equation}
+		
+		As $ P $ now depends only on $ \vec{p} $. The last term in Eq. \eqref{LHS BE} is non-zero only from the second order expansion onwards, so we can safely neglect it. Recall ,$ P^i \equiv \dfrac{dx^i}{d\lambda} $ and $ P^0 = \dfrac{dt}{d\lambda} $. Hence,
+		
+		\begin{equation}\label{key}
+		\dfrac{dx^i}{dt} = \dfrac{dx^i}{d\lambda}\dfrac{d\lambda}{dt} = \dfrac{P^i}{P^0}		
+		\end{equation}
+		
+		The comoving momentum $ P^i $ is proportional to $ \hat{p}^i $ so,
+		\begin{equation}\label{key}
+		P^i \equiv C\hat{p}^i
+		\end{equation}
+		
+		To determine C:
+		
+		\begin{align}
+		p^2 = g_{ij}P^i P^j &= g_{ij}\hat{p}^i \hat{p}^j C^2\\
+		& = a^2(1+2 \Phi) \delta_{ij}\hat{p}^i \hat{p}^jC^2\\
+		& = a^2(1+2 \Phi) \delta_{ij}C^2
+		\end{align}
+		
+		Substituting the value of $ C $ obtained above, we get:
+		
+		\begin{equation}\label{key}
+		\dfrac{dx^i}{dt} = \dfrac{\hat{p}^I}{a}(i+\Psi - \Phi)
+		\end{equation}
+		
+		The above equation implies that an overdense region slows down the photon. Collecting all the above results, we have:
+		\begin{equation}\label{key}
+		\dfrac{df}{dt} = \dfrac{\partial f}{\partial t } + \dfrac{\hat{p}^i}{a}\dfrac{\partial f}{\partial x^i } + \dfrac{\partial f}{\partial p } \dfrac{dp}{dt}
+		\end{equation}
+		
+		Now we need to calculate what is $ \dfrac{dp}{dt} $. For this, we will need the geodesic equation from general relativity. 
+		
+		Using all that we finally get,
+		
+		\begin{equation}\label{key}
+		\dfrac{1}{p} \dfrac{dp}{dt} -H -\dfrac{\partial \Phi}{\partial t }- \dfrac{\hat{p}^i}{a}\dfrac{\partial \Psi}{\partial x^i }
+		\end{equation}
+		
+		Hence the Boltzmann equation for photons is : 
+		
+		\begin{equation}\label{key}
+		\dfrac{df}{dt} = \dfrac{\partial f}{\partial t } + \dfrac{\hat{p}^i}{a}\dfrac{\partial f}{\partial x^i } - p\dfrac{\partial f}{\partial p }[H +\dfrac{\partial \Phi}{\partial t } + \dfrac{\hat{p}^i}{a}\dfrac{\partial \Psi}{\partial x^i }]
+		\end{equation}
+		
+		\subsection{Boltzmann equation for Cold Dark matter}
+		The constraint in Eq. \eqref{photon-mom} now becomes
+		
+		\begin{equation}\label{key}
+		g_{\mu \nu} P^\mu P^\nu = -m^2
+		\end{equation}
+		
+		Where m is the mass of the dark matter particle. 
+		
+		Following the similar procedure as that of the photon, but with this new constraint for mass, the Boltzmann equation turns out to be:
+		
+		\begin{equation}\label{key}
+		\dfrac{df}{dt} = E\dfrac{\partial f }{\partial t } - \dfrac{\dot{a}}{a}|\vec{p}|^2 \dfrac{\partial f }{\partial E}
+		\end{equation}
+		
+		Now, at the time of freeze out, we look into the collision terms to get the complete Boltzmann equation.  
+		
+		Consider the interactions in the form $ 1+2 \leftrightarrow 3+4 $. The collision term for particle 1 is then: 
+		%%
+		\begin{eqnarray}
+		g_1 \int C[f_1] \, \frac{d^3 p_1}{(2 \pi)^3} &=& -\sum_\text{spins} \int \left[ f_1 f_2 (1 \pm f_3) (1\pm f_4) |\mathcal{M}_{12\rightarrow34}|^2- f_3 f_4 (1\pm f_1) (1\pm f_2) |\mathcal{M}_{34\rightarrow12}|^2 \right] \nonumber \\ 
+		&&  \times (2\pi)^4 \delta^4(p_1 + p_2 -p_3- p_4) \, d \Pi_1 \,  d \Pi_2 \, d \Pi_3 \, d \Pi_4 \, ,
+		\label{eq: coll1}
+		\end{eqnarray}
+		%% 
+		
+		where $g_i$ and $f_i$ are the spin degrees of freedom and phase-space densities, respectively, for particle  $i$, and $\mathcal{M}_{x\rightarrow y}$ is the matrix element for the reaction $x\rightarrow y$.  Factors of the form $(1\pm f)$ represent Pauli blocking and Bose enhancement\footnote{Here is an explanation for the $ 1 \pm f $ factors corresponding to Pauli Blocking and Bose enhancement \href{https://physics.stackexchange.com/a/212114/99789}{https://physics.stackexchange.com/a/212114/99789}}; the minus sign applies to fermions and the plus sign to bosons.  These terms encapsulate the fact that it is easier(harder) for a boson(fermion) to transition to a state that already contains a boson(fermion).  The last line of (\ref{eq: coll1}) includes a delta function that enforces energy and momentum conservation, and the phase-space integration factors 
+		%%
+		\begin{align*}
+		d\Pi_i =  \frac{d^3 p_i}{(2\pi)^3 \, 2 E_i}. \nonumber  
+		\end{align*}
+		%%
+		In order to simplify this expression expression for collision terms further, we take our liberty to ornate this report with a few more assumptions: 
+		
+		\begin{enumerate}
+			\item \emph{Kinetic equilibrium} is maintained and so the phase-space distributions take on the Fermi-Dirac or Bose-Einstein forms.  
+			\item The temperature of each species satisfies $T_i \ll E_i - \mu_i$, where $\mu_i$ is its chemical potential, so that they follow the Maxwell-Boltzmann distribution.  In this case, the statistical mechanical factors in the calculation can be ignored and $(1\pm f) \sim 1$. 
+			\item The Standard Model particles in the interaction are in thermal equilibrium with the photon bath.  
+		\end{enumerate}
+		
+		Now we need to relate the cross section to the matrix element. 
+		
+		%%
+		\begin{eqnarray}
+		\sum_\text{spins} \int |\mathcal{M}_{ij\rightarrow kl}|^2 \times (2\pi)^4 \delta^4(p_i + p_j -p_k- p_l) \, d \Pi_k \, d \Pi_l \,  = 4 \, g_i g_j  \sigma_{ij} \sqrt{(p_i \cdot p_j)^2 - (m_i m_j)^2} \, ,\nonumber 
+		\end{eqnarray}
+		%%  
+		where $\sigma_{ij}$ is the cross section for the scattering process.  Substituting this back into the collision term gives  
+		%%
+		\begin{align*}
+		g_1 \int C[f_1] \, \frac{d^3 p_1}{(2 \pi)^3} = -\int \left\{ \left(\sigma v_\text{M\o l}\right)_{12} dn_1 dn_2 - \left(\sigma v_\text{M\o l}\right)_{34} dn_3 dn_4 \right\} \, , \nonumber
+		\end{align*}
+		%%
+		where the M\o ller velocity is defined as 
+		%%
+		\begin{align*}
+		\left(v_\text{M\o l} \right)_{ij}= \frac{\sqrt{(p_i \cdot p_j)^2 - (m_i \, m_j)^2}}{E_i \, E_j} \,  \nonumber
+		\end{align*}
+		%%
+		for the $ij\rightarrow kl$ process.  Because $\sigma v_\text{M\o l}$ varies slowly with changes in the number density of the initial and final-state particles, it can be factored out of the integrand to give
+		%%
+		\begin{align*}
+		\dot{n}_1 + 3 H n_1 = - \langle \sigma v_\text{M\o l} \rangle_{12} n_1 n_2 + \langle \sigma v_\text{M\o l} \rangle_{34}  n_3 n_4  \, . 
+		\label{eq: Boltz4}
+		\end{align*}
+		%%
+		Note that the velocity that is used in the cross-section average is \emph{not} the relative velocity, $v_\text{rel}$, of the incoming particles.  This is important, as $\left(v_\text{M\o l}\right)_{ij} n_i n_j$ is Lorentz invariant, whereas $ v_\text{rel} n_i n_j$ is not.  From this point forward, we will simply write the M\o ller velocity as $v_\text{M\o l} \rightarrow v$ to simplify notation.
+		
+		Let us now return to the specific inelastic process illustrated in Fig.~\ref{fig: equil}.  In this case, particles 1 and 2 are identical with number density $n$, and particles 3 and 4 are Standard Model particles in thermal equilibrium with the photon bath.  When the DM is also in equilibrium with the Standard Model final states, then detailed balance dictates that  
+		%%
+		\begin{align*}
+		\langle \sigma v \rangle_{12} \, n_\text{eq}^2 = \langle \sigma v\rangle_{34} \, n_3^\text{eq} n_4^\text{eq}  \,,   \nonumber
+		\end{align*}
+		%%
+		which can be used to rewrite the second term of (\ref{eq: Boltz4}) in terms of the DM number density and the cross section for the forward reaction.  The Boltzmann equation reduces to
+		%%
+		\begin{equation}
+		\dot{n} + 3 H n = \langle \sigma v \rangle \left( n_\text{eq}^2 - n^2 \right) \, ,
+		\label{eq: BoltzN1}
+		\end{equation}
+		%%
+		where $\langle \sigma v \rangle = \langle \sigma v \rangle_{12}$.  
+		
+	\end{chapter}
+
+	\begin{chapter}{Questions}
+		\begin{itemize}
+		\item When does the neutrino interactions with the target become an irreducible backgroud?
+	\end{itemize}
+		
+		
+	\end{chapter}
+
+	\begin{chapter}{Experiment}
+		\section{DARWIN experment}
+		DARk matter WImp search with liquid xenoN. Consists of liquid Xenon and a time projection chamber. 
+		VUV sensitive(?), ultra-low background photosensors. 
+		Sensitivity to WIMPs above mass $5GeV/c^2$.
+		Can also see \textbf{solar axions}, \textbf{galactic axion like particles}, \textbf{neutrinoless double beta deay of 136Xe},\textbf{low energy solar neutrino flux},\textbf{coherent neutrino-nucleus interactions},\textbf{galactic supernovae}
+	\section{Xurich experiment}
+	
+	Xurich II small liquid/gas xenon TPC. For rare event searches below 50keV. 
+	
+	
+		
+	\end{chapter}
+
+	\begin{chapter}{Simulations}
+		content...
+	\end{chapter}
+
+	\begin{chapter}{Inferences}
+		content...
+	\end{chapter}
+
+
+	\bibliographystyle{plain}
+\bibliography{dmbib}
+	
+
+\end{document}
